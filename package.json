@@ -1,0 +1,28 @@
+{
+  "name": "bfs-route-puzzle",
+  "version": "1.0.0",
+  "description": "A-Maze-ingly Retro Route Puzzle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remvil/bfs-route-puzzle.git"
+  },
+  "keywords": [
+    "bfs",
+    "route",
+    "retro",
+    "puzzle"
+  ],
+  "author": "Remigio Vildacci",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/remvil/bfs-route-puzzle/issues"
+  },
+  "homepage": "https://github.com/remvil/bfs-route-puzzle#readme",
+  "directories": {
+    "example": "examples"
+  }
+}
