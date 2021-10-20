@@ -1,26 +1,25 @@
-"use strict";
-
 const printed = [];
 
 /**
- * s
+ * Print the table that explain the route with objects collected
  * @param {array} route
  * @param {arrat} roomsMap
  * @param {array} toCollect
  */
-function printResult(route, roomsMap, toCollect) {
-  process.stdout.write("\nID\tRoom\t\tObject Collected\n");
+function printRoutes(route, roomsMap, objectsToCollect, idsIndexesMap) {
+  process.stdout.write("\nID\tRoom\t\tObject collected\n");
   process.stdout.write("----------------------------------------");
 
   route.forEach(roomId => {
-    process.stdout.write("\n" + roomId + "\t" + roomsMap[roomId].name + "\t");
-    if (!hasWhiteSpace(roomsMap[roomId].name)) process.stdout.write("\t");
+    process.stdout.write("\n" + roomId + "\t" + roomsMap[idsIndexesMap[roomId]].name + "\t");
+    if (!hasWhiteSpace(roomsMap[idsIndexesMap[roomId]].name)) process.stdout.write("\t");
 
-    let objectsInRoom = roomsMap[roomId].objects;
+    let objectsInRoom = roomsMap[idsIndexesMap[roomId]].objects;
+
     if (objectsInRoom.length < 1) {
       process.stdout.write("None");
     } else {
-      getObjects(objectsInRoom, toCollect);
+      getObjects(objectsInRoom, objectsToCollect);
     }
   });
   process.stdout.write("\n");
@@ -28,17 +27,22 @@ function printResult(route, roomsMap, toCollect) {
   return 0;
 }
 
+
 /**
  *
  * @param {array} objectsInRoom
  * @param {array} toCollect
  */
-function getObjects(objectsInRoom, toCollect) {
+function getObjects(objectsInRoom, objectsToCollect) {
   let printNone = true;
 
+  // console.log('====================================');
+  // console.log(objectsInRoom);
+  // console.log('====================================');
+  // process.exit();
   objectsInRoom.forEach(currentObject => {
     if (
-      toCollect.includes(currentObject.name) &&
+      objectsToCollect.includes(currentObject.name) &&
       !printed.includes(currentObject.name)
     ) {
       process.stdout.write(currentObject.name + " ");
@@ -55,13 +59,13 @@ function getObjects(objectsInRoom, toCollect) {
 }
 
 /* TODO da migliorare
- Hack per correggere il problema della formattazione
+ Fix per correggere il problema della formattazione
 */
 function hasWhiteSpace(s) {
   return /\s/g.test(s);
 }
 
 module.exports = {
-  printResult: printResult,
+  printRoutes: printRoutes,
   getObjects: getObjects
 };

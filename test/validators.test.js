@@ -9,7 +9,6 @@ const mapObjs = { Knife: 3, "Potted Plant": 4 };
 const initialRoom = 2;
 const inexistentRoom = 679;
 const maze = [
-  {},
   { id: 1, name: "Hallway", north: 2, objects: [] },
   { id: 2, name: "Dining Room", south: 1, west: 3, east: 4, objects: [] },
   { id: 3, name: "Kitchen", east: 2, objects: [{ name: "Knife" }] },

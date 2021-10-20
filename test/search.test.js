@@ -1,7 +1,7 @@
 "use strict";
 
 const assert = require("assert");
-const fns = require("../src/utils/search");
+const fns = require("../src/routes/search");
 
 const graph = [
   [1, 1, 0, 0, 1, 0],

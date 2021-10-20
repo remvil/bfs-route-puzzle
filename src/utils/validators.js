@@ -9,10 +9,10 @@ process.exitCode = 0;
 function isMinArgsSatisfied(inputArgs) {
   if (inputArgs.length < process.env.MIN_ARGS) {
     process.stderr.write(
-      "\nError : You should specify at least two parameters\n"
+      "\nError : You should specify at least two parameters\n[you should pass room id before, then objects to find]\n"
     );
-    process.exitCode = process.env.EXIT_CODE;
-    process.exit(process.env.EXIT_CODE);
+    process.exitCode = process.env.EXIT_ERROR_CODE;
+    process.exit(process.env.EXIT_ERROR_CODE);
   }
 }
 
@@ -23,36 +23,36 @@ function isMinArgsSatisfied(inputArgs) {
 function isRoomANumber(roomNumber) {
   let start = Number(roomNumber);
   if (start < 1 || !Number.isInteger(start)) {
-    process.stderr.write("\nError : Start room is not a valid number\n");
-    process.exitCode = process.env.EXIT_CODE;
-    process.exit(process.env.EXIT_CODE);
+    process.stderr.write("\nError : Start room is not a valid number.\n[you should pass room id before, then objects to find]\n");
+    process.exitCode = process.env.EXIT_ERROR_CODE;
+    process.exit(process.env.EXIT_ERROR_CODE);
   }
 }
 
 /**
  * Checks if the provided start room is contained inside the maze
- * @param {number} room id provided as input
+ * @param {number} roomId 
  * @param {array} maze 
  */
-function isRoomInMaze(roomNumber, maze) {
-  if (maze.findIndex( x => x.id == roomNumber) === -1 ) {
+function isRoomInMaze(roomId, maze) {
+  if (maze.findIndex( room => room.id == roomId ) === -1 ) {
     process.stderr.write("\nError : the starting room `" + roomNumber + "` is not in the maze\n");
-    process.exitCode = process.env.EXIT_CODE;
-    process.exit(process.env.EXIT_CODE);
+    process.exitCode = process.env.EXIT_ERROR_CODE;
+    process.exit(process.env.EXIT_ERROR_CODE);
   }
 }
 
 /**
  * Checks if the provided objects to collcet are contained inside the maze
- * @param {array} toCollect objects to be collected
+ * @param {array} objectList list of searching objects
  * @param {array} objectsMap objects contained inside the maze
  */
-function theresObjectsInMaze(toCollect, objectsMap) {
-  toCollect.forEach((object) => {
+function theresObjectsInMaze(objectList, objectsMap) {
+  objectList.forEach((object) => {
     if (!objectsMap[object]) {
       process.stderr.write("\nError : Cannot find a route\n");
-      process.exitCode = process.env.EXIT_CODE;
-      process.exit(process.env.EXIT_CODE);
+      process.exitCode = process.env.EXIT_ERROR_CODE;
+      process.exit(process.env.EXIT_ERROR_CODE);
     }
   });
 }
@@ -61,5 +61,5 @@ module.exports = {
   isMinArgsSatisfied: isMinArgsSatisfied,
   isRoomANumber: isRoomANumber,
   isRoomInMaze: isRoomInMaze,
-  theresObjectsInMaze: theresObjectsInMaze,
+  theresObjectsInMaze: theresObjectsInMaze
 };

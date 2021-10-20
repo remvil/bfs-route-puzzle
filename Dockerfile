@@ -1,5 +1,8 @@
 FROM node:14-alpine
 
 COPY . .
+RUN ls
+RUN pwd
+RUN npm i
 
-CMD ["node", "bin/retro-puzzle-cli.js"]
+CMD ["npm", "start"]

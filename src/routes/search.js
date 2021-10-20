@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Breadth First search
  *
@@ -12,13 +14,12 @@ const bfs = function(graph, startNode, targetNode) {
   let current;
 
   // Visited nodes mapping
-  queue.push(startNode);
+  queue.push(Number(startNode));
   parents[startNode] = null;
   visited[startNode] = true;
 
   while (queue.length) {
     current = queue.shift();
-
     if (current === targetNode) {
       let path = computePath(parents, targetNode);
       return path;

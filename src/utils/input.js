@@ -4,8 +4,8 @@ dotenv.config();
 
 function read() {
   let inputArgs = process.argv.slice(process.env.MIN_ARGS);
-  validator.minArgsSatisfied(process.argv.slice(2));
-  validator.isStartRoomNumber(inputArgs[process.env.START_ROOM_INDEX]);
+  validator.isMinArgsSatisfied(process.argv.slice(2));
+  validator.isRoomANumber(inputArgs[process.env.ARGS_INDEX_ROOM]);
 
   return inputArgs;
 }

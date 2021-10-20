@@ -1,14 +1,12 @@
-"use strict";
-
 const fs = require("fs");
 
-const roomsMap = [];
+const maze = [];
 const adjacencyMap = [];
 const objectsMap = [];
+const idsIndexesMap = [];
 
 /**
- * Read the file provided as input via console
- *
+ * Read the file
  * @param {string} filePath
  */
 function readData(filePath) {
@@ -16,8 +14,7 @@ function readData(filePath) {
 }
 
 /**
- * Parse the data into a JS object
- *
+ * Parse the data into a JSON object
  * @param {string} data
  */
 function parseJson(data) {
@@ -25,52 +22,46 @@ function parseJson(data) {
 }
 
 /**
- * Computes data structures needed to solve the problem
- *
+ * Ceates maze, adjacencyMap and ObjectMap needed to solve the puzzle
  * @param {object} map
  */
-function computeDataStructures(map) {
+function initDataStructures(map) {
   map.rooms.forEach(currentRoom => {
-    computeRoomsMap(currentRoom);
-    computeAdjacencyMap(currentRoom);
-    computeObjectsMap(currentRoom);
+    createMaze(currentRoom);
+    createAdjacencyMap(currentRoom);
+    createObjectsMap(currentRoom);
   });
-
   return;
 }
 
 /**
- * Computes an array of JSObject
- * In each position matching a room.id stores a JSObject
- * containing the information related to that room
- * e.g. {room.id, room.name, room.neighbors, room.objects}
- *
- * @param {object} room
+ * creates an array of JSObject it creates a map of indexes and rooms id
+ * @param {Array} maze
  */
-function computeRoomsMap(room) {
-  roomsMap[room.id] = room;
-  return roomsMap;
+function createMaze(room) {
+  maze.push(room);
+  idsIndexesMap[room.id] = room.id - 1;
+  return maze;
 }
 
 /**
- * Computes the adjaceny matrix
+ * creates the adjaceny matrix
  * the elements of the matrix indicate whether pairs of vertices
  * are adjacent or not in the graph.
  *
  * @param {object} room
  */
-function computeAdjacencyMap(room) {
-  adjacencyMap[room.id] = computeRoomNeighbors(room);
+function createAdjacencyMap(room) {
+  // adjacencyMap[room.id] = setRoomNeighbors(room);
+  adjacencyMap.push(setRoomNeighbors(room));
   return adjacencyMap;
 }
 
 /**
- * Computes a single row of the adjaceny matrix
- * if the room i is connected room j insert a 1 in position j
- *
+ * Sets the neighbor for the given room
  * @param {object} room
  */
-function computeRoomNeighbors(room) {
+function setRoomNeighbors(room) {
   let neighbors = [];
 
   if (room.north) {
@@ -86,16 +77,16 @@ function computeRoomNeighbors(room) {
     neighbors[room.east] = 1;
   }
 
+
   return neighbors;
 }
 
 /**
- * Computes an array of JSObject
+ * Creates an array of JSObject
  * Each element represent a pair <object.name: room.id>
- *
  * @param {object} room
  */
-function computeObjectsMap(room) {
+function createObjectsMap(room) {
   if (room.objects.length) {
     room.objects.forEach(object => {
       objectsMap[object.name] = room.id;
@@ -106,10 +97,7 @@ function computeObjectsMap(room) {
 }
 
 /**
- * Given an array of objects as input it returns an array
- * that assosciate each object to the room.id in which it
- * is contained
- *
+ * Creates an array that assosciate each object to the room.id
  * @param {array} objects
  */
 function getObjectsRooms(objects) {
@@ -130,18 +118,21 @@ const getAdjacencyMap = () => adjacencyMap;
 
 const getObjectsMap = () => objectsMap;
 
-const getRoomsMap = () => roomsMap;
+const getMazeMap = () => maze;
+
+const getidsIndexesMap = () => idsIndexesMap;
 
 module.exports = {
   readData: readData,
   parseJson: parseJson,
-  computeRoomsMap: computeRoomsMap,
-  computeAdjacencyMap: computeAdjacencyMap,
-  computeRoomNeighbors: computeRoomNeighbors,
-  computeObjectsMap: computeObjectsMap,
-  computeDataStructures: computeDataStructures,
+  createMaze: createMaze,
+  createAdjacencyMap: createAdjacencyMap,
+  setRoomNeighbors: setRoomNeighbors,
+  createObjectsMap: createObjectsMap,
+  initDataStructures: initDataStructures,
   getObjectsRooms: getObjectsRooms,
   getAdjacencyMap: getAdjacencyMap,
-  getRoomsMap: getRoomsMap,
+  getMazeMap: getMazeMap,
+  getidsIndexesMap: getidsIndexesMap,
   getObjectsMap: getObjectsMap
 };
