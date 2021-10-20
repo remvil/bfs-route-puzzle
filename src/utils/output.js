@@ -11,8 +11,6 @@ function printRoutes(route, maze, objectsToCollect, idsIndexesMap) {
   process.stdout.write("----------------------------------------");
 
   route.forEach(roomId => {
-    // console.log(roomsMap);
-    // process.exit();
     process.stdout.write("\n" + roomId + "\t" + maze[roomId].name + "\t");
     if (!hasWhiteSpace(maze[roomId].name)) process.stdout.write("\t");
 

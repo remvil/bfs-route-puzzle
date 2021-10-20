@@ -1,5 +1,13 @@
 const { bfs } = require('./search');
 
+/**
+ * Retrieve the correct route using BFS
+ * 
+ * @param {Array} adjacencyMap 
+ * @param {Number} startRoomId 
+ * @param {Array} targetRoomsIds 
+ * @returns 
+ */
 function getRoute(adjacencyMap, startRoomId, targetRoomsIds) {
   let route = [startRoomId];
 
@@ -9,8 +17,7 @@ function getRoute(adjacencyMap, startRoomId, targetRoomsIds) {
     if (!path) {
       return path;
     }
-    // Remove the first element inside the computed path since it is
-    // already stored in the route
+    
     path.shift();
     route = route.concat(path);
     start = targetNode;
