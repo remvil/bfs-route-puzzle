@@ -8,15 +8,17 @@ const { bfs } = require('./search');
  * @param {Array} targetRoomsIds 
  * @returns 
  */
-function getRoute(adjacencyMap, startRoomId, targetRoomsIds) {
-  let route = [startRoomId];
+function getRoute(adjacencyMap, start, targetRoomsIds) {
+  let route = [start];
 
   while (targetRoomsIds.length) {
     let targetNode = targetRoomsIds.pop();
-    let path = bfs(adjacencyMap, startRoomId, targetNode)
+    let path = bfs(adjacencyMap, start, targetNode)
+    
     if (!path) {
       return path;
     }
+    // console.log(path);
     
     path.shift();
     route = route.concat(path);

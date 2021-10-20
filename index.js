@@ -10,7 +10,7 @@ dotenv.config();
 
 const args = read();
 const mazeFile = args[process.env.ARGS_INDEX_MAZE_FILE];
-const startRoomId = args[process.env.ARGS_INDEX_ROOM];
+const startRoomId = Number(args[process.env.ARGS_INDEX_ROOM]);
 const objectsList = args.slice(process.env.ARGS_INDEX_FIRST_OBJECT);
 
 const jsonFile = ds.readData(mazeFile);

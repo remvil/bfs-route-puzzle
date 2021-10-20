@@ -1,31 +1,31 @@
 # bfs-route-puzzle
-A-Maze-ingly Retro Route Puzzle
+## A-Maze-ingly Retro Route Puzzle
+
+### Problem:
 
 Write a program that will output a valid route one could follow to collect all specified items within a map. The map is a json description of set of rooms with allowed path and contained object.
 
 exercize starts with an input of:
-  - json reppresentation of map
-  - starting room
-  - list of object to collect
+- json reppresentation of map 
+- starting room
+- list of object to collect
   
 ```
 Room type allowed fields
-
   id: Integer
   name: String
   north: Integer //referring to a connected room
   south: Integer //referring to a connected room
-  west: Integer //referring to a connected room
-  east: Integer //referring to a connected room
-  objects: List //of Objects
-  
+  west: Integer  //referring to a connected room
+  east: Integer  //referring to a connected room
+  objects: List  //of Objects
+
 Object type allowed fields
   name: String //Object Name
 ```
 
 Example 1
--------
-
+---
 Map
 ```json
 {
@@ -56,8 +56,7 @@ Output
 |4|Sun Room|Potted Plant|
 
 Example 2
--------
-
+---
 Map
 ```json
 {
@@ -94,3 +93,23 @@ Output
 |1|Hallway|None|
 |2|Dining Room|None|
 |3|Kitchen|None|
+
+Additional Goals:
+---
+- TDD approach.
+- Build a Docker container with runnable code inside so that we can mount a volume in it and test on different maps.
+-----
+
+## Usage
+### Quickstart
+````
+$> npm i
+$> npm start ./samples/maze1.json 2 "Knife" "Potted Plant"
+`````
+
+### Docker
+````
+$> docker build -t amazing-interview . 
+$> docker run route-puzzle ./src/samples/maze2.json 4 "Knife" "Potted Plant" "Pillow"
+````
+
