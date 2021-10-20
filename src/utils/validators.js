@@ -36,6 +36,7 @@ function isRoomANumber(roomNumber) {
  */
 function isRoomInMaze(roomId, maze) {
   if (maze.findIndex( room => room.id == roomId ) === -1 ) {
+  // if(!maze[roomId]){
     process.stderr.write("\nError : the starting room `" + roomNumber + "` is not in the maze\n");
     process.exitCode = process.env.EXIT_ERROR_CODE;
     process.exit(process.env.EXIT_ERROR_CODE);

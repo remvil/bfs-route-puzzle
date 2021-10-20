@@ -29,9 +29,7 @@ validators.theresObjectsInMaze(objectsList, objectsMap);
 
 const adjacencyMap = ds.getAdjacencyMap();
 
-
 const route = getRoute(adjacencyMap, startRoomId, targetRooms);
-// console.log(route); process.exit();
 isRouteEmpty(route);
 
 output.printRoutes(route, mazeMap, objectsList, idsIndexesMap);

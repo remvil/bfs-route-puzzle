@@ -1,4 +1,4 @@
-const printed = [];
+const collectedItems = [];
 
 /**
  * Print the table that explain the route with objects collected
@@ -11,6 +11,8 @@ function printRoutes(route, roomsMap, objectsToCollect, idsIndexesMap) {
   process.stdout.write("----------------------------------------");
 
   route.forEach(roomId => {
+    console.log(roomsMap);
+    process.exit();
     process.stdout.write("\n" + roomId + "\t" + roomsMap[idsIndexesMap[roomId]].name + "\t");
     if (!hasWhiteSpace(roomsMap[idsIndexesMap[roomId]].name)) process.stdout.write("\t");
 
@@ -29,24 +31,19 @@ function printRoutes(route, roomsMap, objectsToCollect, idsIndexesMap) {
 
 
 /**
- *
+ * get Objects if objects to collect are in the room
  * @param {array} objectsInRoom
  * @param {array} toCollect
  */
 function getObjects(objectsInRoom, objectsToCollect) {
   let printNone = true;
-
-  // console.log('====================================');
-  // console.log(objectsInRoom);
-  // console.log('====================================');
-  // process.exit();
   objectsInRoom.forEach(currentObject => {
     if (
       objectsToCollect.includes(currentObject.name) &&
-      !printed.includes(currentObject.name)
+      !collectedItems.includes(currentObject.name)
     ) {
       process.stdout.write(currentObject.name + " ");
-      printed.push(currentObject.name);
+      collectedItems.push(currentObject.name);
       printNone = false;
     }
   });
@@ -55,7 +52,7 @@ function getObjects(objectsInRoom, objectsToCollect) {
     process.stdout.write("None");
   }
 
-  return printed;
+  return collectedItems;
 }
 
 /* TODO da migliorare

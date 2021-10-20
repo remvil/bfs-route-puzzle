@@ -26,11 +26,13 @@ function parseJson(data) {
  * @param {object} map
  */
 function initDataStructures(map) {
-  map.rooms.forEach(currentRoom => {
+  map.rooms.forEach((currentRoom) => {
     createMaze(currentRoom);
     createAdjacencyMap(currentRoom);
     createObjectsMap(currentRoom);
   });
+
+  console.log(idsIndexesMap);
   return;
 }
 
@@ -39,8 +41,9 @@ function initDataStructures(map) {
  * @param {Array} maze
  */
 function createMaze(room) {
+  // maze[room.id] = room;
   maze.push(room);
-  idsIndexesMap[room.id] = room.id - 1;
+  idsIndexesMap[room.id - 1] = room.id;
   return maze;
 }
 
@@ -77,7 +80,6 @@ function setRoomNeighbors(room) {
     neighbors[room.east] = 1;
   }
 
-
   return neighbors;
 }
 
@@ -88,7 +90,7 @@ function setRoomNeighbors(room) {
  */
 function createObjectsMap(room) {
   if (room.objects.length) {
-    room.objects.forEach(object => {
+    room.objects.forEach((object) => {
       objectsMap[object.name] = room.id;
     });
   }
@@ -102,7 +104,7 @@ function createObjectsMap(room) {
  */
 function getObjectsRooms(objects) {
   let nodes = [];
-  objects.forEach(currentObject => {
+  objects.forEach((currentObject) => {
     if (
       objectsMap[currentObject] &&
       !nodes.includes(objectsMap[currentObject])
@@ -134,5 +136,5 @@ module.exports = {
   getAdjacencyMap: getAdjacencyMap,
   getMazeMap: getMazeMap,
   getidsIndexesMap: getidsIndexesMap,
-  getObjectsMap: getObjectsMap
+  getObjectsMap: getObjectsMap,
 };
