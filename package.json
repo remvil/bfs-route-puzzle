@@ -1,10 +1,11 @@
 {
   "name": "bfs-route-puzzle",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A-Maze-ingly Retro Route Puzzle",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "./node_modules/mocha/bin/mocha test/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,10 @@
   "homepage": "https://github.com/remvil/bfs-route-puzzle#readme",
   "directories": {
     "example": "examples"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mocha": "^9.1.3"
   }
 }

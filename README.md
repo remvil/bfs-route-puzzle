@@ -94,34 +94,3 @@ Output
 |1|Hallway|None|
 |2|Dining Room|None|
 |3|Kitchen|None|
-
-Build instructions
-------------------
-
-To build the docker image:
-```
-docker build -t rrp .
-```
-
-To build code:
-```
-docker run -v $(pwd):/mnt -p 9090:9090 -w /mnt rrp ./scripts/build.sh
-```
-
-To run tests:
-```
-docker run -v $(pwd):/mnt -p 9090:9090 -w /mnt rrp ./scripts/test.sh
-```
-
-### To run
-```
-docker run -v $(pwd):/mnt -p 9090:9090 -w /mnt mytest ./scripts/run.sh --map-file ./examples/1.json --starting-room 2 --objects-to-collect 'Knife,Potted Plant'
-docker run -v $(pwd):/mnt -p 9090:9090 -w /mnt mytest ./scripts/run.sh --map-file ./examples/2.json --starting-room 4 --objects-to-collect 'Knife,Potted Plant,Pillow'
-```
-
-## Accepted arguments
-| Name | Description |
-|----|------|
-|map-file|A valid path to the map object file in json|
-|starting-room|The id of the starting room|
-|objects-to-collect|A comma separated list of object to collect|
