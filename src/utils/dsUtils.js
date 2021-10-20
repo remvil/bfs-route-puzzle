@@ -31,8 +31,6 @@ function initDataStructures(map) {
     createAdjacencyMap(currentRoom);
     createObjectsMap(currentRoom);
   });
-
-  console.log(idsIndexesMap);
   return;
 }
 
@@ -41,9 +39,8 @@ function initDataStructures(map) {
  * @param {Array} maze
  */
 function createMaze(room) {
-  // maze[room.id] = room;
-  maze.push(room);
-  idsIndexesMap[room.id - 1] = room.id;
+  maze[room.id] = room;
+  // maze.push(room);
   return maze;
 }
 
@@ -55,8 +52,8 @@ function createMaze(room) {
  * @param {object} room
  */
 function createAdjacencyMap(room) {
-  // adjacencyMap[room.id] = setRoomNeighbors(room);
-  adjacencyMap.push(setRoomNeighbors(room));
+  adjacencyMap[room.id] = setRoomNeighbors(room);
+  // adjacencyMap.push(setRoomNeighbors(room));
   return adjacencyMap;
 }
 

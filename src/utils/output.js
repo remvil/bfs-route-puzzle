@@ -3,20 +3,20 @@ const collectedItems = [];
 /**
  * Print the table that explain the route with objects collected
  * @param {array} route
- * @param {arrat} roomsMap
- * @param {array} toCollect
+ * @param {arrat} maze
+ * @param {array} objectsToCollect
  */
-function printRoutes(route, roomsMap, objectsToCollect, idsIndexesMap) {
+function printRoutes(route, maze, objectsToCollect, idsIndexesMap) {
   process.stdout.write("\nID\tRoom\t\tObject collected\n");
   process.stdout.write("----------------------------------------");
 
   route.forEach(roomId => {
-    console.log(roomsMap);
-    process.exit();
-    process.stdout.write("\n" + roomId + "\t" + roomsMap[idsIndexesMap[roomId]].name + "\t");
-    if (!hasWhiteSpace(roomsMap[idsIndexesMap[roomId]].name)) process.stdout.write("\t");
+    // console.log(roomsMap);
+    // process.exit();
+    process.stdout.write("\n" + roomId + "\t" + maze[roomId].name + "\t");
+    if (!hasWhiteSpace(maze[roomId].name)) process.stdout.write("\t");
 
-    let objectsInRoom = roomsMap[idsIndexesMap[roomId]].objects;
+    let objectsInRoom = maze[roomId].objects;
 
     if (objectsInRoom.length < 1) {
       process.stdout.write("None");
