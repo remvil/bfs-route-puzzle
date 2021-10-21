@@ -110,6 +110,11 @@ $> npm start ./samples/maze1.json 2 "Knife" "Potted Plant"
 ### Docker
 ````
 $> docker build -t amazing-interview . 
-$> docker run route-puzzle ./src/samples/maze2.json 4 "Knife" "Potted Plant" "Pillow"
+$> docker run amazing-interview ./src/samples/maze2.json 4 "Knife" "Potted Plant" "Pillow"
 ````
 
+----
+## Testing
+````
+$> npm run test
+````
