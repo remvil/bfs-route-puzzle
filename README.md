@@ -110,7 +110,7 @@ $> npm start ./samples/maze1.json 2 "Knife" "Potted Plant"
 ### Docker
 ````
 $> docker build -t amazing-interview . 
-$> docker run -v `samples`:`samples` --name amazeingly amazing-interview /samples/maze2.json 4 "Knife" "Potted Plant" "Pillow"
+$> docker run --rm -v `samples`:`samples` --name amazeingly amazing-interview /samples/maze2.json 4 "Knife" "Potted Plant" "Pillow"
 ````
 
 ----
