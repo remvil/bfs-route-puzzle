@@ -1,4 +1,4 @@
-# bfs-route-puzzle
+# maze-route-puzzle-nodejs
 ## A-Maze-ingly Retro Route Puzzle
 
 ### Problem:
